@@ -9,6 +9,7 @@ import com.google.android.ump.ConsentInformation
 import com.google.android.ump.ConsentRequestParameters
 import com.google.android.ump.UserMessagingPlatform
 import timber.log.Timber
+import com.google.android.gms.ads.MobileAds
 
 /**
  * Lightweight wrapper for UMP consent and AdMob initialization.
@@ -30,7 +31,14 @@ object AdConsentManager {
             )
             // Note: Do not automatically show the consent form here. Show from an Activity when needed.
             // Mobile Ads SDK initialization can be delayed until you have consent or choose to initialize immediately.
-            // MobileAds.initialize(application) { initializationStatus -> /* optional callback */ }
+            // MobileAds initialization: initialize after consent or immediately for non-personalized ads.
+            try {
+                MobileAds.initialize(application) { initializationStatus ->
+                    Timber.d("MobileAds initialized: %s", initializationStatus.toString())
+                }
+            } catch (e: Exception) {
+                Timber.w(e, "MobileAds init failed")
+            }
         } catch (e: Exception) {
             Timber.w(e, "Failed to initialize ad consent manager")
         }

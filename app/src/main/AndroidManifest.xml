@@ -175,6 +175,11 @@
     android:hasFragileUserData="true"
     android:localeConfig="@xml/locales_config">
 
+    <!-- AdMob App ID (set via resources). Replace with your real App ID if different. -->
+    <meta-data
+      android:name="com.google.android.gms.ads.APPLICATION_ID"
+      android:value="@string/admob_app_id" />
+
     <activity
       android:name="net.openid.appauth.RedirectUriReceiverActivity"
       android:exported="true"
