@@ -184,6 +184,28 @@ class MainSettingsFragment : InjectingPreferenceFragment() {
         requires(BuildConfig.DEBUG, R.string.debug)
 
         updateWidgetVisibility()
+        // Wire About and Privacy preferences to open AboutActivity
+        findPreference("pref_about").setOnPreferenceClickListener {
+            startActivity(Intent(requireContext(), org.tasks.about.AboutActivity::class.java))
+            false
+        }
+        findPreference("pref_privacy_policy").setOnPreferenceClickListener {
+            startActivity(Intent(requireContext(), org.tasks.about.AboutActivity::class.java).apply {
+                putExtra("show_privacy", true)
+            })
+            false
+        }
+        findPreference("pref_source_code").setOnPreferenceClickListener {
+            val url = getString(R.string.source_code_url)
+            context?.openUri(url)
+            false
+        }
+        findPreference("pref_license").setOnPreferenceClickListener {
+            startActivity(Intent(requireContext(), org.tasks.about.AboutActivity::class.java).apply {
+                putExtra("show_license", true)
+            })
+            false
+        }
     }
 
     private fun updateBackupWarning() {

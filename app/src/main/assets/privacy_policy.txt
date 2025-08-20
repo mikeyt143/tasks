@@ -1,0 +1,19 @@
+MyTasks Pro - Privacy Policy
+
+1) Data collection
+- The app does not upload tasks to external servers unless you explicitly enable a sync account (CalDAV, Google Tasks, etc.).
+- If you enable sync, data will be sent to the configured provider and is subject to that provider's privacy policy.
+- If ads are enabled, the ads SDK may collect device identifiers and other telemetry as described by the ad provider.
+
+2) Ads and third parties
+- Third-party ad SDKs (for example AdMob) may collect device identifiers, advertising IDs, and usage data.
+- We do not control ad network data collection; see the ad network's privacy policy for details.
+
+3) Data safety
+- Local data is stored on the device.
+- Users can export and backup their tasks locally.
+
+4) Contact
+- For privacy questions, contact: mikeyt143@example.com
+
+(Short summary added by integrator — update before publishing)

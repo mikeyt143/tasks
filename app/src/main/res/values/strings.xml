@@ -215,6 +215,15 @@ File %1$s contained %2$s.\n\n
     <item quantity="one">%d hour</item>
     <item quantity="other">%d hours</item>
   </plurals>
+  <!-- App branding and compliance strings added by integrator -->
+  <string name="app_name">MyTasks Pro</string>
+  <string name="about_credits">Based on open-source Tasks (GPL v3), modified by mikeyt143</string>
+  <string name="privacy_policy_title">Privacy Policy</string>
+  <string name="privacy_policy_summary">This app does not upload tasks to external servers unless configured. Ads SDKs may collect device identifiers.</string>
+  <string name="source_code_label">Source code</string>
+  <string name="source_code_url">https://github.com/USERNAME/tasks</string>
+  <string name="license_label">License (GPLv3)</string>
+  <string name="license_short">This app is distributed under the GNU General Public License v3. See source for full text.</string>
   <plurals name="repeat_days">
     <item quantity="one">day</item>
     <item quantity="other">days</item>

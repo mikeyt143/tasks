@@ -249,6 +249,11 @@
       </intent-filter>
     </activity>
 
+    <activity
+      android:name="org.tasks.about.AboutActivity"
+      android:exported="false"
+      android:label="@string/about" />
+
     <!-- Activity for selecting Android shortcut -->
     <activity
       android:label="@string/FSA_label"

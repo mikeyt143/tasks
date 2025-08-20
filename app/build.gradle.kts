@@ -47,10 +47,9 @@ android {
     }
 
     compileSdk = libs.versions.android.compileSdk.get().toInt()
-
     defaultConfig {
-        testApplicationId = "org.tasks.test"
-        applicationId = "org.tasks"
+        testApplicationId = "com.mycompany.mytasks.test"
+        applicationId = "com.mycompany.mytasks"
         versionCode = libs.versions.versionCode.get().toInt()
         versionName = libs.versions.versionName.get()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
@@ -134,8 +133,7 @@ android {
         }
     }
 
-    namespace = "org.tasks"
-}
+    namespace = "com.mycompany.mytasks"
 
 configurations.all {
     exclude(group = "org.apache.httpcomponents")
