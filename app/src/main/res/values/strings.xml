@@ -221,7 +221,7 @@ File %1$s contained %2$s.\n\n
   <string name="privacy_policy_title">Privacy Policy</string>
   <string name="privacy_policy_summary">This app does not upload tasks to external servers unless configured. Ads SDKs may collect device identifiers.</string>
   <string name="source_code_label">Source code</string>
-  <string name="source_code_url">https://github.com/USERNAME/tasks</string>
+  <string name="source_code_url">https://github.com/mikeyt143/tasks</string>
   <string name="license_label">License (GPLv3)</string>
   <string name="license_short">This app is distributed under the GNU General Public License v3. See source for full text.</string>
   <plurals name="repeat_days">
