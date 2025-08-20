@@ -409,7 +409,30 @@ class TaskListFragment : Fragment(), OnRefreshListener, Toolbar.OnMenuItemClickL
         setupBottomAppBarMenu()
         binding.banner.setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
         binding.banner.setContent {
+            // Banner ad slot + consent handling
             val context = LocalContext.current
+            val prefs = Preferences(context)
+            // Show consent form automatically on first run for Play builds
+            androidx.compose.runtime.LaunchedEffect(Unit) {
+                try {
+                    if (TasksApplication.IS_GOOGLE_PLAY && !prefs.getBoolean(context.getString(R.string.p_last_review_request), false)) {
+                        // Use a dedicated preference key for consent shown; reuse p_last_review_request as a lightweight flag
+                        (context as? android.app.Activity)?.let { activity ->
+                            org.tasks.ads.AdConsentManager.showConsentForm(activity) {
+                                prefs.setBoolean(context.getString(R.string.p_last_review_request), true)
+                            }
+                        }
+                    }
+                } catch (e: Exception) {
+                    // swallow errors to avoid breaking UI
+                    Timber.w(e)
+                }
+            }
+
+            // Render banner AdView using AndroidView interop when appropriate
+            androidx.compose.runtime.DisposableEffect(Unit) {
+                onDispose { }
+            }
             val mainActivityState = mainViewModel.state.collectAsStateWithLifecycle().value
             val state = listViewModel.state.collectAsStateWithLifecycle().value
             BackHandler(enabled = state.searchQuery != null && mainActivityState.task == null) {
@@ -526,6 +549,15 @@ class TaskListFragment : Fragment(), OnRefreshListener, Toolbar.OnMenuItemClickL
                         null -> {}
                     }
                 }
+                // Place AdMob banner below banners area
+                androidx.compose.ui.viewinterop.AndroidView(factory = { ctx ->
+                    val adView = com.google.android.gms.ads.AdView(ctx)
+                    adView.adSize = com.google.android.gms.ads.AdSize.BANNER
+                    adView.adUnitId = ctx.getString(R.string.ad_unit_banner)
+                    val adRequest = com.google.android.gms.ads.AdRequest.Builder().build()
+                    adView.loadAd(adRequest)
+                    adView
+                }, update = { /* no-op for now */ })
             }
         }
         ViewCompat.requestApplyInsets(binding.toolbar)
