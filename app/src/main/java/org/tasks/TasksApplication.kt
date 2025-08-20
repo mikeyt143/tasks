@@ -67,6 +67,14 @@ class TasksApplication : Application(), Configuration.Provider {
     override fun onCreate() {
         super.onCreate()
         buildSetup.setup()
+        // Initialize ad consent and ad SDK only for Google Play flavor
+        try {
+            if (IS_GOOGLE_PLAY) {
+                AdConsentManager.initialize(this)
+            }
+        } catch (e: Exception) {
+            Timber.w(e, "Ad initialization failed")
+        }
         val defaultExceptionHandler = Thread.getDefaultUncaughtExceptionHandler()
         Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
             Timber.e(throwable, "Uncaught exception in thread $thread")

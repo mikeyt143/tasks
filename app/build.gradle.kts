@@ -271,6 +271,11 @@ dependencies {
     }
     googleplayImplementation(projects.wearDatalayer)
 
+    // Ads (AdMob) and UMP consent SDK — only included in Play flavor
+    // These are minimal, widely-used coordinates; bump versions if you prefer newer releases.
+    googleplayImplementation("com.google.android.gms:play-services-ads:22.3.0")
+    googleplayImplementation("com.google.android.ump:ump:2.0.0")
+
     androidTestImplementation(libs.dagger.hilt.testing)
     kspAndroidTest(libs.dagger.hilt.compiler)
     kspAndroidTest(libs.androidx.hilt.compiler)
